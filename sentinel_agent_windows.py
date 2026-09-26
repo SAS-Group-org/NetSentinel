@@ -228,7 +228,7 @@ class VirusTotalChecker:
         self._sess  = self._mksess()
         if self._en:
             threading.Thread(target=self._worker, daemon=True, name="VTWorker").start()
-            log(f"VirusTotal ACTIVE  (key:{api_key[:8]}...  {rpm} req/min)", Fore.CYAN)
+            log(f"VirusTotal ACTIVE  ({rpm} req/min)", Fore.CYAN)
         else:
             log("VirusTotal DISABLED - set VIRUSTOTAL_API_KEY to enable", Fore.YELLOW)
 
