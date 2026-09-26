@@ -243,7 +243,7 @@ class VirusTotalChecker:
             t.start()
             log(
                 f"VirusTotal checker ACTIVE  "
-                f"(key: {api_key[:8]}…  "
+                f"(api key configured  "
                 f"rate: {rpm} req/min  "
                 f"thresholds: malicious>={VT_MALICIOUS_THRESHOLD} / "
                 f"suspicious>={VT_SUSPICIOUS_THRESHOLD})",
