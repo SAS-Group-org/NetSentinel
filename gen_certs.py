@@ -139,7 +139,7 @@ Path("sentinel_config.json").write_text(json.dumps(config, indent=2))
 os.chmod("sentinel_config.json", 0o600)
 print("  ✔  sentinel_config.json")
 
-print(f"""
+print("""
 ╔══════════════════════════════════════════════════════════╗
 ║                    Setup Complete                        ║
 ╠══════════════════════════════════════════════════════════╣
@@ -148,7 +148,7 @@ print(f"""
 ║  Server key:   certs/server.key                          ║
 ║  Config:       sentinel_config.json                      ║
 ╠══════════════════════════════════════════════════════════╣
-║  API Key: {api_key:<48} ║
+║  API Key:      [hidden in sentinel_config.json]          ║
 ║                                                          ║
 ║  Keep this secret — distribute sentinel_config.json      ║
 ║  to each agent host (agents only need api_key + ca_cert) ║
