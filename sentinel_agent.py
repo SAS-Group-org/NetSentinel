@@ -1092,7 +1092,7 @@ def main():
     alerter = Alerter(cooldown=CFG["alert_cooldown"])
 
     vt_status = (
-        f"{Fore.GREEN}ENABLED  (key: {vt_key[:8]}...){Style.RESET_ALL}"
+        f"{Fore.GREEN}ENABLED{Style.RESET_ALL}"
         if vt_key else
         f"{Fore.YELLOW}DISABLED  (set VIRUSTOTAL_API_KEY to enable){Style.RESET_ALL}"
     )
