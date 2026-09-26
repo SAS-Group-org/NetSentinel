@@ -19,6 +19,7 @@ try:
     from cryptography.x509.oid import NameOID
     from cryptography.hazmat.primitives import hashes, serialization
     from cryptography.hazmat.primitives.asymmetric import rsa
+    from cryptography.fernet import Fernet
 except ImportError:
     raise SystemExit("[!] Run:  pip install cryptography")
 
@@ -126,10 +127,15 @@ save_cert(srv_cert, CERT_DIR / "server.crt")
 print("\n[3/3]  Generating API key and writing sentinel_config.json …")
 
 api_key = secrets.token_urlsafe(32)
+fernet_key = Fernet.generate_key()
+cipher = Fernet(fernet_key)
+encrypted_api_key = cipher.encrypt(api_key.encode("utf-8")).decode("utf-8")
+
 config  = {
     "server_host": "0.0.0.0",
     "server_port": 8443,
-    "api_key":     api_key,
+    "api_key_encrypted": encrypted_api_key,
+    "api_key_key": fernet_key.decode("utf-8"),
     "ca_cert":     str(CERT_DIR / "ca.crt"),
     "server_cert": str(CERT_DIR / "server.crt"),
     "server_key":  str(CERT_DIR / "server.key"),
