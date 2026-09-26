@@ -129,7 +129,6 @@ api_key = secrets.token_urlsafe(32)
 config  = {
     "server_host": "0.0.0.0",
     "server_port": 8443,
-    "api_key":     api_key,
     "ca_cert":     str(CERT_DIR / "ca.crt"),
     "server_cert": str(CERT_DIR / "server.crt"),
     "server_key":  str(CERT_DIR / "server.key"),
@@ -148,13 +147,15 @@ print(f"""
 ║  Server key:   certs/server.key                          ║
 ║  Config:       sentinel_config.json                      ║
 ╠══════════════════════════════════════════════════════════╣
-║  API Key: {api_key:<48} ║
+║  API Key is not written to disk or printed.              ║
+║  Set SENTINEL_API_KEY securely on server and agents.     ║
 ║                                                          ║
-║  Keep this secret — distribute sentinel_config.json      ║
-║  to each agent host (agents only need api_key + ca_cert) ║
+║  Keep this secret out of files/logs and share securely.  ║
+║  Agents need SENTINEL_API_KEY + ca_cert.                 ║
 ╚══════════════════════════════════════════════════════════╝
 
 Next steps:
-  1.  python3 sentinel_server.py          # on your server
-  2.  sudo python3 sentinel_agent.py      # on each monitored host
+  1.  export SENTINEL_API_KEY='{api_key}'
+  2.  python3 sentinel_server.py          # on your server
+  3.  sudo -E python3 sentinel_agent.py   # on each monitored host
 """)
