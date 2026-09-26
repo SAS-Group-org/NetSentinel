@@ -862,7 +862,7 @@ def run_monitor(iface="", no_tray=False):
     vt_key  = resolve_vt_key(CFG)
     vt      = VirusTotalChecker(vt_key)
     alerter = Alerter(cooldown=CFG["alert_cooldown"])
-    vs      = f"ENABLED ({vt_key[:8]}...)" if vt_key else "DISABLED"
+    vs      = "ENABLED" if vt_key else "DISABLED"
 
     print(f"""
   +--------------------------------------------------------+
